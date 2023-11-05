@@ -1,11 +1,8 @@
 import throttle from 'lodash.throttle';
 
 const form = document.querySelector('.feedback-form');
-console.log(form);
 const email = document.querySelector('input');
-console.log(email);
 const message = document.querySelector('textarea');
-console.log(message);
 
 const FEEDBACK_FORM_KEY = 'feedback-form-state';
 
@@ -26,14 +23,17 @@ function onFormInput(event) {
 
 function onSubmit(event) {
   event.preventDefault();
-  console.log(event);
-  console.log({ email: email.value, message: message.value });
-  localStorage.removeItem(FEEDBACK_FORM_KEY);
-  event.currentTarget.reset();
+  if (email.value.trim() !== '' && message.value.trim() !== '') {
+    console.log({ email: email.value, message: message.value });
+    localStorage.removeItem(FEEDBACK_FORM_KEY);
+    event.currentTarget.reset();
+  } else {
+    alert('Будь ласка, заповніть обидва поля.');
+  }
 }
+
 try {
   feedbackForm = JSON.parse(localStorage.getItem(FEEDBACK_FORM_KEY));
-  console.log(feedbackForm);
   if (feedbackForm !== null) {
     email.value = feedbackForm.email;
     message.value = feedbackForm.message;
