@@ -81,7 +81,7 @@ img {
   width: 48px;
   height: 48px;
   background: #db4d19;
-  border-radius: 50%;
+  border-radius: 50px;
 }
 
 .task_link .circle .icon {
